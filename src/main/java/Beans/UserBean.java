@@ -24,10 +24,10 @@ public class UserBean {
         this.user = user;
     }
     
-    public String loginAttempt() {
-        if(UserValidator.login(user.getUsername(), user.getPassword())) return "home";
-        else return "index";
-    }
+//    public String loginAttempt() {
+//        if(UserValidator.login(user.getUsername(), user.getPassword())) return "home";
+//        else return "index";
+//    }
     
     
 } // UserBean.java

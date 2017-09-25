@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Index</title>
+                <title>JokeRater</title>
             </f:facet>
         </h:head> <!--Head-->
 
@@ -19,23 +19,25 @@
 
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
                     <h1>This is the SWEN-356 Scrum project to create a Prof. Malachowsky Joke Rater web app</h1>
-                </p:layoutUnit> <!--Header-->
+                    
+                </p:layoutUnit> Header
 
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
                     <h3>All rights reserved to our SWEN-356 Scrum team.</h3>
-                </p:layoutUnit> <!--Footer-->
+                </p:layoutUnit> Footer
                 
                 <p:layoutUnit position="center">
+                    <p:button value="Jokes Page" href="joke.xhtml" />
                     <h2 style="text-align:center;">Login component will go here</h2>
-                    <p:panelGrid id="login" columns=2> 
+                    <p:panelGrid id="login" columns="2"> 
                         <h:outputText value="username:"/>
                         <h:inputText value="#{userBean.user.username}"/>
                         <h:outputText value="password:"/>
                         <h:inputText value="#{userBean.user.password}"/>
-                    </p>
-                </p:layoutUnit> <!--Center-->
-
-            </p:layout> <!--Layout-->
+                    </p:panelGrid>
+                </p:layoutUnit> Center
+                
+            </p:layout> Layout
 
         </h:body> <!--Body-->
 

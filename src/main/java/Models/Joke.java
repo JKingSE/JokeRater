@@ -108,7 +108,7 @@ public class Joke {
         return punniness;
     }
     
-    public int setOverallRating(int overallRating){
+    public void setOverallRating(int overallRating){
         this.overallRating = overallRating;
     }
     
