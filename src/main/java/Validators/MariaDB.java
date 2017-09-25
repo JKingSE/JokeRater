@@ -6,4 +6,7 @@ package Validators;
  */
 public class MariaDB {
     
+    public static boolean loginQuery(String username, String password){
+        return false;
+    }
 } // MariaDB.java

@@ -27,6 +27,12 @@
                 
                 <p:layoutUnit position="center">
                     <h2 style="text-align:center;">Login component will go here</h2>
+                    <p:panelGrid id="login" columns=2> 
+                        <h:outputText value="username:"/>
+                        <h:inputText value="#{userBean.user.username}"/>
+                        <h:outputText value="password:"/>
+                        <h:inputText value="#{userBean.user.password}"/>
+                    </p>
                 </p:layoutUnit> <!--Center-->
 
             </p:layout> <!--Layout-->
