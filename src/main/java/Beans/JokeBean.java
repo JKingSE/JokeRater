@@ -7,7 +7,7 @@ package Beans;
 
 /**
  *
- * @author norwa
+ * @author John King
  */
 public class JokeBean {
     

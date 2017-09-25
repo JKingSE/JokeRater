@@ -7,7 +7,7 @@ package Models;
 
 /**
  *
- * @author norwa
+ * @author John King
  */
 public class Rater {
     
