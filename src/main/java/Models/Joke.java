@@ -28,10 +28,13 @@ public class Joke {
         
     }
     
+    public void save(){
+        //Call this to save to the database
+    }
+    
     public void setJoke(String joke){
         this.joke = joke;
     }
-    
     public String getJoke(){
         return joke;
     }
@@ -39,7 +42,6 @@ public class Joke {
     public void setPoster(String poster){
         this.poster = poster;
     }
-    
     public String getPoster(){
         return poster;
     }
@@ -47,7 +49,6 @@ public class Joke {
     public void setClassSection(String classSection){
         this.classSection = classSection;
     }
-    
     public String getClassSection(){
         return classSection;
     }
@@ -55,7 +56,6 @@ public class Joke {
     public void setStringAdded(Date dateAdded){
         this.dateAdded = dateAdded;
     }
-    
     public Date getDateAdded(){
         return dateAdded;
     }
@@ -63,7 +63,6 @@ public class Joke {
     public void setProfessor(int professor){
         this.professor = professor;
     }
-    
     public int getProfessor(){
         return professor;
     }
@@ -71,7 +70,6 @@ public class Joke {
     public void setFlagged(boolean flagged){
         this.flagged = flagged;
     }
-    
     public boolean isFlagged(){
         return flagged;
     }
@@ -79,7 +77,6 @@ public class Joke {
     public void setContext(String context){
         this.context = context;
     }
-    
     public String getContext(){
         return context;
     }
@@ -87,7 +84,6 @@ public class Joke {
     public void setEdginess(int edginess){
         this.edginess = edginess;
     }
-    
     public int getEdginess(){
         return edginess;
     }
@@ -95,7 +91,6 @@ public class Joke {
     public void setFunniness(int funniness){
         this.funniness = funniness;
     }
-    
     public int getFunniness(){
         return funniness;
     }
@@ -103,7 +98,6 @@ public class Joke {
     public void setPunniness(int punniness){
         this.punniness = punniness;
     }
-    
     public int getPunniness(){
         return punniness;
     }
@@ -111,7 +105,6 @@ public class Joke {
     public void setOverallRating(int overallRating){
         this.overallRating = overallRating;
     }
-    
     public int getOverallRating(){
         return overallRating;
     }
@@ -123,7 +116,6 @@ public class Joke {
             count++;
         }
     }
-    
     public int[] getTags(){
         return tags;
     }
