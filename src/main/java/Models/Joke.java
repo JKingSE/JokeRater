@@ -102,8 +102,8 @@ public class Joke {
         return punniness;
     }
     
-    public void setOverallRating(int overallRating){
-        this.overallRating = overallRating;
+    public void setOverallRating(){
+        this.overallRating = Math.round(funniness+punniness+edginess)/3;
     }
     public int getOverallRating(){
         return overallRating;

@@ -20,7 +20,6 @@ public class JokeBean {
         joke.setFunniness(funniness);
         joke.setPunniness(punniness);
         joke.setEdginess(edginess);
-        int overallRating = Math.round(funniness+punniness+edginess)/3;
-        joke.setOverallRating(overallRating);
+        joke.setOverallRating();
     }
 }
