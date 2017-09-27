@@ -35,10 +35,18 @@ public class UserBean implements Serializable {
     }
     
     //***Controller Method(s)***//
+    public String registerAttempt() {
+        if(UserValidator.register(user.getUsername(), user.getPassword()))
+            return "index";
+        else
+            return "registration";
+    }
     
     public String loginAttempt() {
-        if(UserValidator.login(user.getUsername(), user.getPassword())) return "home";
-        else return "index";
+        if(UserValidator.login(user.getUsername(), user.getPassword())) 
+            return "home";
+        else 
+            return "index";
     }
     
 } // UserBean.java

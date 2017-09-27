@@ -139,6 +139,30 @@ public class MariaDB {
             return conn;
         }   // end of finally
     }
+    public static boolean registerQuery(String username, String password) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = connect();
+            // Pre-compile a SQL Statement to check DB for user info
+                // Attributes: Username, Password
+                // Table: users
+            String query = "INSERT INTO Users (Username, Password) VALUES (?, ?)";
+            // ps throws SQL exception if database access error occurs
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            return ps.executeUpdate() > 0;
+        }   // end of try
+        catch (SQLException ex) {
+            Logger.getLogger(MariaDB.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }   // end of catch
+        finally {
+            closeResource(ps);
+            closeResource(conn);
+        }   // end of finally
+    }
     public static boolean loginQuery(String username, String password){
         Connection conn = null;
         PreparedStatement ps = null;
@@ -146,7 +170,7 @@ public class MariaDB {
         try {
             conn = connect();
             // Pre-compile a SQL Statement to check DB for user info
-            ps = conn.prepareStatement("SELECT Username, Password from users where Username= ? and Password= ?");
+            ps = conn.prepareStatement("SELECT Username, Password from Users where Username= ? and Password= ?");
             ps.setString(1, username);
             ps.setString(2, password);
             // store result set from query

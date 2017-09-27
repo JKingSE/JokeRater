@@ -9,6 +9,10 @@ import java.security.NoSuchAlgorithmException;
  */
 public class UserValidator {
         
+        public static boolean register(String username, String password) {
+            return MariaDB.registerQuery(username, encrypt(password));
+        }
+    
         public static boolean login(String username, String password) {
             return MariaDB.loginQuery(username, encrypt(password));
         }
