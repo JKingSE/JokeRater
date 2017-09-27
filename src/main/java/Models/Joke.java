@@ -28,10 +28,6 @@ public class Joke {
         
     }
     
-    public void save(){
-        //Call this to save to the database
-    }
-    
     public void setJoke(String joke){
         this.joke = joke;
     }
