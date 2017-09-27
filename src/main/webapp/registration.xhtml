@@ -40,7 +40,7 @@
                                 <p:inputText style="margin-left:50px;" value="#{userBean.user.username}"/>
 
                                 <h:outputText value="Password:"/>
-                                <p:inputText style="margin-left:50px;" value="#{userBean.user.password}"/>
+                                <p:password style="margin-left:50px;" value="#{userBean.user.password}"/>
                                 
                                 <p:commandButton value="Submit" action="#{userBean.registerAttempt}" update="registrationForm" ajax="false" icon="ui-icon-unlocked"/>
                                 <p:spacer/>
