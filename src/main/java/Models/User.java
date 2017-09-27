@@ -25,4 +25,9 @@ public class User {
         this.password = password;
     }
     
+    public User() {
+        this.username = "";
+        this.password = "";
+    }
+    
 } // User.java

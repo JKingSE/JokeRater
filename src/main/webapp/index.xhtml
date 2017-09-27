@@ -17,27 +17,43 @@
 
             <p:layout fullPage="true">
 
-                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    <h1>This is the SWEN-356 Scrum project to create a Prof. Malachowsky Joke Rater web app</h1>
-                    
-                </p:layoutUnit> Header
+                <p:layoutUnit position="north" size="120" resizable="true" closable="true" collapsible="true">
+                    <img src="Images/whiteJRLogo.png" height="100" width="300" style="margin:0px 0px; float:left;" onerror="this.src='../Images/whiteJRLogo.jpg';"/>
+                    <span style="color:black;font-variant:small-caps;font-size:x-large;float:right;"><br />SWEN-356 Scrum Project<br />&nbsp;&nbsp;&nbsp;&nbsp;Version: Alpha</span>
+                </p:layoutUnit> <!--Header-->
 
-                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                    <h3>All rights reserved to our SWEN-356 Scrum team.</h3>
-                </p:layoutUnit> Footer
+                <p:layoutUnit position="south" size="65" closable="true" collapsible="true">
+                    <div align="center" style="color:black;font-variant:small-caps;font-size:large;">
+                       All rights reserved to Beltran Caliz, Colin Fausnaught, Michael Gilmour, John King III, and Ian Taylor.
+                       <br />
+                       Special thanks to Professor Samuel Malachowsky.
+                    </div>
+                    </p:layoutUnit> <!--Footer-->
                 
-                <p:layoutUnit position="center">
-                    <p:button value="Jokes Page" href="joke.xhtml" />
-                    <h2 style="text-align:center;">Login component will go here</h2>
-                    <p:panelGrid id="login" columns="2"> 
-                        <h:outputText value="username:"/>
-                        <h:inputText value="#{userBean.user.username}"/>
-                        <h:outputText value="password:"/>
-                        <h:inputText value="#{userBean.user.password}"/>
-                    </p:panelGrid>
-                </p:layoutUnit> Center
+                <p:layoutUnit position="center" style="padding-top:10%;">
+                    <h:form id="loginForm">
+                        <p:panel  header="Enter Your Login Credentials Below" style="width:450px;margin:auto;padding:10px;border:3px solid black;display:block;">
+                            <h:panelGrid id="login" columns="2">
+                                <h:outputText value="Username:"/>
+                                <p:inputText style="margin-left:50px;" value="#{userBean.user.username}"/>
+
+                                <h:outputText value="Password:"/>
+                                <p:inputText style="margin-left:50px;" value="#{userBean.user.password}"/>
+                                
+                                <p:spacer/>
+                                <p:spacer/>
+                                
+                                <p:spacer/>
+                                <h:outputText value="Don't have an account?"  style="margin-left:25px;"/>
+                                
+                                <p:commandButton value="Submit" action="#{userBean.loginAttempt}" update="loginForm" ajax="false" icon="ui-icon-unlocked"/>
+                                <p:button value="Register" outcome="/faces/registration.xhtml" icon="ui-icon-plusthick" style="margin-left:25px;"/>
+                            </h:panelGrid> 
+                        </p:panel>
+                    </h:form>
+                </p:layoutUnit> <!--Center-->
                 
-            </p:layout> Layout
+            </p:layout> <!--Layout-->
 
         </h:body> <!--Body-->
 

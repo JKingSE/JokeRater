@@ -2,6 +2,7 @@ package Beans;
 
 import Models.User;
 import Validators.UserValidator;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -11,23 +12,33 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name = "userBean")
 @SessionScoped
-
-public class UserBean {
+public class UserBean implements Serializable {
     
-    private User user;
+    // UserBean Variable(s)
+    private static final long serialVersionUID = 1L;
+    private User user = new User();
 
+    //***Getters & Setters***//
+    /**
+     * Accessor for User
+     * @return      User    - the session user
+     */
     public User getUser() {
         return user;
     }
-
+    /**
+     * Mutator for User
+     * @param       user    A user object
+     */
     public void setUser(User user) {
         this.user = user;
     }
     
-//    public String loginAttempt() {
-//        if(UserValidator.login(user.getUsername(), user.getPassword())) return "home";
-//        else return "index";
-//    }
+    //***Controller Method(s)***//
     
+    public String loginAttempt() {
+        if(UserValidator.login(user.getUsername(), user.getPassword())) return "home";
+        else return "index";
+    }
     
 } // UserBean.java

@@ -9,18 +9,17 @@ import java.security.NoSuchAlgorithmException;
  */
 public class UserValidator {
         
-        public boolean login(String username, String password){
-            
-            try{
+        public static boolean login(String username, String password) {
+            try {
                 return MariaDB.loginQuery(username, encrypt(password));
-            }
-            catch(Exception e){ System.out.println("OOPSIES");}
-            
+            }   // end of try
+            catch(Exception e) { 
+                System.out.println("OOPSIES");
+            }   // end of catch
             return false;
-        
         }
         
-        private String encrypt(String password) throws NoSuchAlgorithmException{
+        private static String encrypt(String password) throws NoSuchAlgorithmException{
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(password.getBytes());
 
