@@ -10,28 +10,32 @@ import java.security.NoSuchAlgorithmException;
 public class UserValidator {
         
         public static boolean login(String username, String password) {
-            try {
-                return MariaDB.loginQuery(username, encrypt(password));
-            }   // end of try
-            catch(Exception e) { 
-                System.out.println("OOPSIES");
-            }   // end of catch
-            return false;
+            return MariaDB.loginQuery(username, encrypt(password));
         }
         
-        private static String encrypt(String password) throws NoSuchAlgorithmException{
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(password.getBytes());
-
-            byte byteData[] = md.digest();
-
-            //convert the byte to hex format method 1
-            StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < byteData.length; i++) {
-             sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+        private static String encrypt(String password) {
+            String salted = "Malachowsky" + password;
+            StringBuilder hash = new StringBuilder();
+            try {
+                // MessageDigest format MD5. Other options are SHA-1 or SHA-256
+                MessageDigest mdfive = MessageDigest.getInstance("MD5");
+                // performs a final update on the digest using the specified array of bytes
+                // then completes the digest computation
+                byte[] hashedBytes = mdfive.digest(salted.getBytes());
+                // hexadecimal digits
+                char[] digits = {'0', '1', '2', '3', '4', '5', '6',
+                    '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+                // populate StringBuilder using Bitwise and  Bit Shift operators
+                for (int i = 0; i < hashedBytes.length; i++) {
+                    byte b = hashedBytes[i];
+                    hash.append(digits[(b & 0xf0) >> 4]);
+                    hash.append(digits[b & 0x0f]);
+                }
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
             }
-
-            return sb.toString();
+            // Convert StringBuilder to string (32 character hashcode)
+            return hash.toString();
         }
-           
+        
 } // UserValidator.java
