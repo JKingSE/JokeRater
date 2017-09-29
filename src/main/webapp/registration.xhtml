@@ -1,16 +1,57 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>User Registration</title>
+            </f:facet>
+        </h:head> <!--Head-->
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="120" resizable="true" closable="true" collapsible="true">
+                    <img src="../Images/whiteJRLogo.png" height="100" width="300" style="margin:0px 0px; float:left;" onerror="this.src='../Images/whiteJRLogo.jpg';"/>
+                    <span style="color:black;font-variant:small-caps;font-size:x-large;float:right;"><br />SWEN-356 Scrum Project<br />&nbsp;&nbsp;&nbsp;&nbsp;Version: Alpha</span>
+                </p:layoutUnit> <!--Header-->
+
+                <p:layoutUnit position="south" size="65" closable="true" collapsible="true">
+                    <div align="center" style="color:black;font-variant:small-caps;font-size:large;">
+                       All rights reserved to Beltran Caliz, Colin Fausnaught, Michael Gilmour, John King, and Ian Taylor.
+                       <br />
+                       Special thanks to Professor Samuel Malachowsky.
+                    </div>
+                </p:layoutUnit> <!--Footer-->
+                
+                <p:layoutUnit position="center" style="padding-top:10%;">
+                    <h:form id="registrationForm">
+                        <p:panel  header="User Registration" style="width:500px;margin:auto;padding:10px;border:3px solid black;display:block;">
+                            <h:outputText value="Enter your desired login credentials into the form below."/>
+                            <br />
+                            <h:panelGrid id="login" columns="2">
+                                <h:outputText value="Username:"/>
+                                <p:inputText style="margin-left:50px;" value="#{userBean.user.username}"/>
+
+                                <h:outputText value="Password:"/>
+                                <p:password style="margin-left:50px;" value="#{userBean.user.password}"/>
+                                
+                                <p:commandButton value="Submit" action="#{userBean.registerAttempt}" update="registrationForm" ajax="false" icon="ui-icon-unlocked"/>
+                                <p:spacer/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </h:form>
+                </p:layoutUnit> <!--Center-->
+                
+            </p:layout> <!--Layout-->
+
+        </h:body> <!--Body-->
+
+    </f:view> <!--View-->
+</html> <!--index.xhtml-->

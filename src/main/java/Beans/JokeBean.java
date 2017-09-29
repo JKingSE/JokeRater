@@ -22,4 +22,8 @@ public class JokeBean {
         joke.setEdginess(edginess);
         joke.setOverallRating();
     }
+    
+    public void save(){
+        //Call this to save to the database
+    }
 }
