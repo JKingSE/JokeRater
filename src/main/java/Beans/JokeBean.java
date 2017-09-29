@@ -21,6 +21,7 @@ public class JokeBean {
         joke.setPunniness(punniness);
         joke.setEdginess(edginess);
         joke.setOverallRating();
+        save();
     }
     
     public void save(){

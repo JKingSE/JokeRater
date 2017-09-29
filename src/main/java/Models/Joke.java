@@ -6,7 +6,7 @@
 package Models;
 import java.util.Date;
 /**
- *
+ * Model for a joke
  * @author John King
  */
 public class Joke {
