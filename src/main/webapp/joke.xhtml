@@ -25,21 +25,45 @@
                     Footer
                 </p:layoutUnit>
 
-                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
-                    <p:menu>
-                        <p:submenu label="Resources">
-                            <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
-                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
-                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
-                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
-
-                        </p:submenu>
-
-                    </p:menu>
-                </p:layoutUnit>
+                
 
                 <p:layoutUnit position="center">
                     Jokes go here
+                    <h:form> 
+                        <p:dataScroller value="#{dataScrollerView.jokes}" var="joke" chunkSize="10" mode="inline" scrollHeight="500">
+                            <f:facet name="header">
+                                Scroll Down to Load More Jokes
+                            </f:facet>
+
+                            <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                                
+
+                                <p:outputPanel>
+                                    <h:panelGrid columns="2" cellpadding="5">
+                                        <h:outputText value="Content:" />
+                                        <h:outputText value="#{joke.joke}" style="font-weight: bold"/>
+
+                                        <h:outputText value="Author:" />
+                                        <h:outputText value="#{joke.professor}" style="font-weight: bold"/>
+
+                                        <h:outputText value="Date:" />
+                                        <h:outputText value="#{joke.dateAdded}" style="font-weight: bold"/>
+                                    </h:panelGrid>
+                                </p:outputPanel>
+                            </h:panelGrid>
+                        </p:dataScroller>
+                    </h:form>
+                    <h:form>
+                        <h:panelGrid columns="4" cellpadding="5">
+                            <h3>Add a new joke</h3>
+                            <p:inputTextarea rows="5" cols="30" counter="display" maxlength="50" counterTemplate="{0} characters remaining." autoResize="false" />
+                            <h:outputText id="display" />
+                            <h:outputLabel for="professor" value="Professor:" style="font-weight:bold" />
+                            <p:inputText id="name" value="#{basicView.text}" />
+                            <p:commandButton value="Submit" update="display" icon="ui-icon-check" />
+                            <h:outputText id="display" value="#{basicView.text}" />
+                        </h:panelGrid>
+                    </h:form>
                 </p:layoutUnit>
 
             </p:layout>
