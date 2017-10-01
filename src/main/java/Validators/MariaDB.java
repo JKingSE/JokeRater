@@ -23,6 +23,8 @@ public class MariaDB {
     private static String database;
     private static String username;
     private static String password;
+    private static String joke;
+    private static int id;
     private static boolean initialized = false;
 
     //***Getters & Setters***//
@@ -188,7 +190,28 @@ public class MariaDB {
             closeResource(conn);
         }   // end of finally
     }
-    
+    public static boolean jokeQuery(String joke, int id, String dateAdded) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = connect();
+            String query = "INSERT INTO Jokes (joke, id, dateAdded) VALUES (?, ?)";
+            // ps throws SQL exception if database access error occurs
+            ps = conn.prepareStatement(query);
+            ps.setString(1, joke);
+            ps.setInt(2, id);
+            ps.setString(3, dateAdded);
+            return ps.executeUpdate() > 0;
+        }   // end of try
+        catch (SQLException ex) {
+            Logger.getLogger(MariaDB.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }   // end of catch
+        finally {
+            closeResource(ps);
+            closeResource(conn);
+        }   // end of finally
+    }
     //***Close Resources***//
     /**
      * Release the database resource
