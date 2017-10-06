@@ -4,17 +4,18 @@
  * and open the template in the editor.
  */
 package Models;
-import java.util.Date;
+import java.time.ZonedDateTime;
 /**
  * Model for a joke
  * @author John King
  */
 public class Joke {
     
+    private int id;
     private String joke;
     private String poster;
     private String classSection;
-    private Date dateAdded;
+    private ZonedDateTime dateAdded;
     private int professor; //References the professor's id who made the joke
     private boolean flagged;
     private String context;
@@ -23,9 +24,13 @@ public class Joke {
     private int punniness;
     private int overallRating;
     private int[] tags;
-    
-    public Joke(){
-        
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public void setJoke(String joke){
@@ -49,10 +54,10 @@ public class Joke {
         return classSection;
     }
     
-    public void setStringAdded(Date dateAdded){
+    public void setStringAdded(ZonedDateTime dateAdded){
         this.dateAdded = dateAdded;
     }
-    public Date getDateAdded(){
+    public ZonedDateTime getDateAdded(){
         return dateAdded;
     }
     
@@ -105,6 +110,22 @@ public class Joke {
         return overallRating;
     }
     
+    public Joke() {
+        this.id = -1;
+        this.joke = "";
+        this.poster = "";
+        this.classSection = "";
+        this.dateAdded = ZonedDateTime.now();
+        this.professor = -1; //References the professor's id who made the joke
+        this.flagged = false;
+        this.context = "";
+        this.edginess = -1;
+        this.funniness = -1;
+        this.punniness = -1;
+        this.overallRating = -1;
+        this.tags = new int[0];
+    }
+    
     public void setTags(int[] tags){
         int count = 0;
         for(int tag : tags){
@@ -115,4 +136,5 @@ public class Joke {
     public int[] getTags(){
         return tags;
     }
-}
+    
+} // Joke.java

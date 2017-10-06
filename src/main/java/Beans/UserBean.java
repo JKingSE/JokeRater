@@ -44,7 +44,7 @@ public class UserBean implements Serializable {
     
     public String loginAttempt() {
         if(UserValidator.login(user.getUsername(), user.getPassword())) 
-            return "home";
+            return "submit";
         else 
             return "index";
     }

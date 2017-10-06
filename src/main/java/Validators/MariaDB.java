@@ -190,17 +190,40 @@ public class MariaDB {
             closeResource(conn);
         }   // end of finally
     }
-    public static boolean jokeQuery(String joke, int id, String dateAdded) {
+    public static boolean submitJokeQuery(String joke, String poster, String context) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = connect();
-            String query = "INSERT INTO Jokes (joke, id, dateAdded) VALUES (?, ?)";
+            String query = "INSERT INTO Jokes (poster, joke, context) VALUES (?, ?, ?)";
             // ps throws SQL exception if database access error occurs
             ps = conn.prepareStatement(query);
-            ps.setString(1, joke);
-            ps.setInt(2, id);
-            ps.setString(3, dateAdded);
+            ps.setString(1, poster);
+            ps.setString(2, joke);
+            ps.setString(3, context);
+            return ps.executeUpdate() > 0;
+        }   // end of try
+        catch (SQLException ex) {
+            Logger.getLogger(MariaDB.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }   // end of catch
+        finally {
+            closeResource(ps);
+            closeResource(conn);
+        }   // end of finally
+    }
+    public static boolean saveRatingsQuery(int id, int Funniness, int Punniness, int Edginess) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = connect();
+            String query = "UPDATE Jokes SET Funniness = ?, Punniness = ?, Edginess = ? WHERE ID = ?)";
+            // ps throws SQL exception if database access error occurs
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, Funniness);
+            ps.setInt(2, Punniness);
+            ps.setInt(3, Edginess);
+            ps.setInt(4, id);
             return ps.executeUpdate() > 0;
         }   // end of try
         catch (SQLException ex) {

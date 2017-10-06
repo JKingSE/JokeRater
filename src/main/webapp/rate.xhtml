@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Home</title>
+                <title>Submit Joke</title>
             </f:facet>
         </h:head>
 
@@ -38,9 +38,27 @@
                     </p:menu>
                 </p:layoutUnit>-->
 
-                <p:layoutUnit position="center">
-                    Hello world!
-                </p:layoutUnit>
+                <p:layoutUnit position="center" style="padding-top:10%;">
+                    <h:form id="submitRateForm">
+                        <p:panel  header="Submit a rating" style="width:500px;margin:auto;padding:10px;border:3px solid black;display:block;">
+                            <h:outputText value="Submit your ratings, a range from 1-5."/>
+                            <br />
+                            <h:panelGrid id="submitRate" columns="2">
+                                <h:outputText value="Funniness:"/>
+                                <p:inputText style="margin-left:50px;" required="true" value="#{jokeBean.joke.funniness}"/>
+
+                                <h:outputText value="Edginess:"/>
+                                <p:password style="margin-left:50px;" value="#{jokeBean.joke.edginess}"/>
+                                
+                                <h:outputText value="Punniness:"/>
+                                <p:password style="margin-left:50px;" value="#{jokeBean.joke.punniness}"/>
+                                
+                                <p:commandButton value="Submit" action="#{jokeBean.saveRatingsAttempt}" update="submitRateForm" ajax="false" icon="ui-icon-unlocked"/>
+                                <p:spacer/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </h:form>
+                </p:layoutUnit> <!--Center-->
 
             </p:layout>
 

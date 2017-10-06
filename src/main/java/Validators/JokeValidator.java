@@ -1,17 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Validators;
 
 /**
- *
- * @author Beltrán
+ * Validator for the Joke model
+ * @author Beltrán, John, Michael
  */
 public class JokeValidator {
 
-    public static boolean submitJoke (String joke, int id, String dateAdded) {
-            return MariaDB.jokeQuery(joke, id, dateAdded);
-        }
-}
+    public static boolean submitJoke(String joke, String poster, String context) {
+        return MariaDB.submitJokeQuery(joke, poster, context);
+    }
+    
+    public static boolean saveRatings(int id, int Funniness, int Punniness, int Edginess) {
+        return MariaDB.saveRatingsQuery(id, Funniness, Punniness, Edginess);
+    }
+    
+} // JokeValidator.java
