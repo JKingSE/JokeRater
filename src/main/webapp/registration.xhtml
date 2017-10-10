@@ -43,6 +43,7 @@
                                 <p:password style="margin-left:50px;" value="#{userBean.user.password}"/>
                                 
                                 <p:commandButton value="Submit" action="#{userBean.registerAttempt}" update="registrationForm" ajax="false" icon="ui-icon-unlocked"/>
+                                <p:button value="Back" outcome="/faces/index.xhtml" icon="ui-icon-plusthick" style="margin-left:25px;"/>
                                 <p:spacer/>
                             </h:panelGrid>
                         </p:panel>
