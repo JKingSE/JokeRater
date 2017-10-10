@@ -48,10 +48,10 @@
                                 <p:inputText style="margin-left:50px;" required="true" value="#{jokeBean.joke.funniness}"/>
 
                                 <h:outputText value="Edginess:"/>
-                                <p:password style="margin-left:50px;" value="#{jokeBean.joke.edginess}"/>
+                                <p:inputText style="margin-left:50px;" value="#{jokeBean.joke.edginess}"/>
                                 
                                 <h:outputText value="Punniness:"/>
-                                <p:password style="margin-left:50px;" value="#{jokeBean.joke.punniness}"/>
+                                <p:inputText style="margin-left:50px;" value="#{jokeBean.joke.punniness}"/>
                                 
                                 <p:commandButton value="Submit" action="#{jokeBean.saveRatingsAttempt}" update="submitRateForm" ajax="false" icon="ui-icon-unlocked"/>
                                 <p:spacer/>
