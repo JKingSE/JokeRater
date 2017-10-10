@@ -3,8 +3,10 @@ package Beans;
 import Models.User;
 import Validators.UserValidator;
 import java.io.Serializable;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  * Controller for the User model
@@ -36,17 +38,25 @@ public class UserBean implements Serializable {
     
     //***Controller Method(s)***//
     public String registerAttempt() {
-        if(UserValidator.register(user.getUsername(), user.getPassword()))
+        if(UserValidator.register(user.getUsername(), user.getPassword())) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered", "PrimeFaces Rocks."));
             return "index";
-        else
+        }
+        else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: User already exists", "Contact admin."));
             return "registration";
+        }
     }
     
     public String loginAttempt() {
-        if(UserValidator.login(user.getUsername(), user.getPassword())) 
+        if(UserValidator.login(user.getUsername(), user.getPassword())) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "PrimeFaces Rocks."));
             return "submit";
-        else 
+        }
+        else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid login", "Contact admin."));
             return "index";
+        }
     }
     
 } // UserBean.java

@@ -33,6 +33,7 @@
                 <p:layoutUnit position="center" style="padding-top:10%;">
                     <h:form id="loginForm">
                         <p:panel  header="Enter Your Login Credentials Below" style="width:450px;margin:auto;padding:10px;border:3px solid black;display:block;">
+                            <p:messages/>
                             <h:panelGrid id="login" columns="2">
                                 <h:outputText value="Username:"/>
                                 <p:inputText style="margin-left:50px;" value="#{userBean.user.username}"/>

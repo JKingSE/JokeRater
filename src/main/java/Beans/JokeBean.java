@@ -6,9 +6,11 @@
 package Beans;
 import Models.Joke;
 import Validators.JokeValidator;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 /**
  *
  * @author John King
@@ -41,8 +43,10 @@ public class JokeBean {
     
     public String submitJokeAttempt() {
         if(JokeValidator.submitJoke(joke.getJoke(), userBean.getUser().getUsername(), joke.getContext())) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Joke submitted", "PrimeFaces Rocks."));
             return "submit";
         } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Cannot submit joke", "Contact admin."));
             return "submit";
         }
     }
