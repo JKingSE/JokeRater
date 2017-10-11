@@ -49,7 +49,7 @@
                                 <p:inputText style="margin-left:50px;" required="true" value="#{jokeBean.joke.joke}"/>
 
                                 <h:outputText value="Context:"/>
-                                <p:password style="margin-left:50px;" value="#{jokeBean.joke.context}"/>
+                                <p:inputText style="margin-left:50px;" value="#{jokeBean.joke.context}"/>
                                 
                                 <p:commandButton value="Submit" action="#{jokeBean.submitJokeAttempt()}" update="submitJokeForm" ajax="false" icon="ui-icon-unlocked"/>
                                 <p:spacer/>

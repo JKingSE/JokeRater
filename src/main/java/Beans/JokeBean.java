@@ -38,7 +38,7 @@ public class JokeBean {
     public void setUserBean(UserBean userBean) {
         this.userBean = userBean;
     }
-    
+   
     
     
     public String submitJokeAttempt() {

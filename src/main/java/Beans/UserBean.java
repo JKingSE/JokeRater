@@ -50,7 +50,6 @@ public class UserBean implements Serializable {
     
     public String loginAttempt() {
         if(UserValidator.login(user.getUsername(), user.getPassword())) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "PrimeFaces Rocks."));
             return "submit";
         }
         else {
