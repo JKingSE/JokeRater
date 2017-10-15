@@ -11,7 +11,7 @@
         <h:form id="form1"> 
             <p:dataTable value="#{jokes.messages}" var="o" paginator="true" rows="3"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="3,5,10" widgetVar="50" style="width: 60px;" >
+                         rowsPerPageTemplate="3,5,10" widgetVar="50" style="width: 500px;" >
                 <f:facet name="header">  
                     Joke List  
                 </f:facet>
@@ -29,6 +29,7 @@
                 </p:column>
              
             </p:dataTable>
+            <p:button value="Home" outcome="/faces/home.xhtml"/>
         </h:form>
     </h:body>
 </html>
