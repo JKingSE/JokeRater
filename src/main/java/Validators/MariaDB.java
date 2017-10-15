@@ -1,5 +1,6 @@
 package Validators;
 
+import Models.Joke;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -7,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -212,6 +214,31 @@ public class MariaDB {
             closeResource(conn);
         }   // end of finally
     }
+    
+    public static ArrayList<Joke>(){
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = connect();
+            // Pre-compile a SQL Statement to check DB for user info
+            ps = conn.prepareStatement("SELECT * FROM Jokes");
+    
+            rs = ps.executeQuery();
+ 
+            return rs.next();
+        }   // end of try
+        catch (SQLException ex) {
+           Logger.getLogger(MariaDB.class.getName()).log(Level.SEVERE, null, ex);
+           return false;
+        }   // end of catch  
+        finally {
+            closeResource(rs);
+            closeResource(ps);
+            closeResource(conn);
+        }   // end of finally
+    }
+    
     public static boolean saveRatingsQuery(int id, int Funniness, int Punniness, int Edginess) {
         Connection conn = null;
         PreparedStatement ps = null;
