@@ -8,7 +8,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -214,8 +218,7 @@ public class MariaDB {
             closeResource(conn);
         }   // end of finally
     }
-    
-    public static ArrayList<Joke>(){
+    public static List<Joke> selectJokesQuery(){
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -223,14 +226,12 @@ public class MariaDB {
             conn = connect();
             // Pre-compile a SQL Statement to check DB for user info
             ps = conn.prepareStatement("SELECT * FROM Jokes");
-    
             rs = ps.executeQuery();
- 
-            return rs.next();
+            return rs2jokelist(rs);
         }   // end of try
         catch (SQLException ex) {
            Logger.getLogger(MariaDB.class.getName()).log(Level.SEVERE, null, ex);
-           return false;
+           return new ArrayList();
         }   // end of catch  
         finally {
             closeResource(rs);
@@ -238,7 +239,6 @@ public class MariaDB {
             closeResource(conn);
         }   // end of finally
     }
-    
     public static boolean saveRatingsQuery(int id, int Funniness, int Punniness, int Edginess) {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -262,6 +262,7 @@ public class MariaDB {
             closeResource(conn);
         }   // end of finally
     }
+    
     //***Close Resources***//
     /**
      * Release the database resource
@@ -295,6 +296,35 @@ public class MariaDB {
                 resource.close();
             } catch (SQLException e) { /* do nothing */ }
         }
+    }
+    
+    //***Conversion Methods***//
+    private static List<Joke> rs2jokelist(ResultSet rs) throws SQLException {
+        List<Joke> jokes = new ArrayList();
+        while(rs.next()) {
+            Joke joke = new Joke();
+            // ID - int
+            joke.setId(rs.getInt(1));
+            // Poster - varchar
+            joke.setPoster(rs.getString(2));
+            // Joke - varchar
+            joke.setJoke(rs.getString(3));
+            // Context - varchar
+            joke.setContext(rs.getString(4));
+            // Funniness - int
+            joke.setFunniness(rs.getInt(5));
+            // Edginess - int
+            joke.setEdginess(rs.getInt(6));
+            // Punniness - int
+            joke.setPunniness(rs.getInt(7));
+            // TimeAdded - timestamp
+            joke.setDateAdded(ts2zdt(rs.getTimestamp(8)));
+            jokes.add(joke);
+        }
+        return jokes;
+    }
+    private static ZonedDateTime ts2zdt(Timestamp ts) {
+        return ZonedDateTime.ofInstant(ts.toInstant(), ZoneId.of("EST"));
     }
     
 } // MariaDB.java

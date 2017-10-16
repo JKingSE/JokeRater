@@ -60,7 +60,9 @@ public class Joke {
     public ZonedDateTime getDateAdded(){
         return dateAdded;
     }
-    
+    public void setDateAdded(ZonedDateTime dateAdded) {
+        this.dateAdded = dateAdded;
+    }
     public void setProfessor(int professor){
         this.professor = professor;
     }

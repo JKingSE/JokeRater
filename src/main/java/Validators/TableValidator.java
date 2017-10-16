@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Validators;
+
+import Models.Joke;
+import java.util.List;
 
 /**
  *
@@ -11,8 +9,8 @@ package Validators;
  */
 public class TableValidator {
     
-//    public static boolean getJoke(String joke, String context) {
-//        return MariaDB.getJokeQuery(joke, context);
-//    }
+    public static List<Joke> selectJokes() {
+        return MariaDB.selectJokesQuery();
+    }
     
-}
+} // TableValidator.java
