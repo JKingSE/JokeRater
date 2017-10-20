@@ -1,3 +1,6 @@
+# after running mysql, input the following: source C:/PATH_TO_SQL_FILE
+
+
 DROP DATABASE IF EXISTS JokeRater;
 CREATE DATABASE JokeRater;
 USE JokeRater;
@@ -26,4 +29,3 @@ INSERT INTO Jokes (Poster, Joke, Class, Professor, Flagged, Context, Funniness, 
 INSERT INTO Jokes (Poster, Joke, Class, Professor, Flagged, Context, Funniness, Edginess, Punniness, Overall) VALUES ("root","The other day I ran into my ex. Then I put it in reverse and ran over her again", "SWEN-256", 0, 0, "Ex-Wife Jokes", 4, 5, 1, 4);
 
 
-# after running mysql, input the following: source C:/PATH_TO_SQL_FILE
