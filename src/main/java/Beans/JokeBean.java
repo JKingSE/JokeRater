@@ -38,8 +38,8 @@ public class JokeBean {
     public void setUserBean(UserBean userBean) {
         this.userBean = userBean;
     }
-   
     
+   
     
     public String submitJokeAttempt() {
         if(JokeValidator.submitJoke(joke.getJoke(), userBean.getUser().getUsername(), joke.getContext())) {
@@ -49,6 +49,14 @@ public class JokeBean {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Cannot submit joke", "Contact admin."));
             return "submit";
         }
+    }
+    
+    public void setFlaggedStatus(){
+        joke.setFlagged(!joke.isFlagged());
+    }
+    
+    public boolean isFlagged(){
+        return joke.isFlagged();
     }
     
     public void setRatings(int funniness, int punniness, int edginess){
