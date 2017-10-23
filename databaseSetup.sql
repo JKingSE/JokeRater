@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS Tags (ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, Tag
 CREATE TABLE IF NOT EXISTS Jokes (ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, Poster VARCHAR (100), Joke VARCHAR(900) NOT NULL, Class VARCHAR(20), Professor INT, Flagged BOOLEAN, Context VARCHAR(50), Funniness INT, Edginess INT, Punniness INT, Overall INT, TimeAdded TIMESTAMP);
 
 
-INSERT INTO Users (Username, Password, Favorite, Flagged) VALUES ("root","77e24e94edf5b6e83257d657bfa990e2","1","1");
-INSERT INTO Users (Username, Password) VALUES ("admin", "4405b1214a555eb925d912f7151718a7");
+INSERT INTO Users (Username, Password, Favorite, Flagged) VALUES ("root","root","1","1");
+INSERT INTO Users (Username, Password) VALUES ("Admin", "admin");
 
 INSERT INTO Professors (Name) VALUES ("Martinez");
 INSERT INTO Professors (Name) VALUES ("Malachowsky");
