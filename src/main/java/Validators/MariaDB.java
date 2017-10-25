@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -224,7 +225,7 @@ public class MariaDB {
         ResultSet rs = null;
         try {
             conn = connect();
-            // Pre-compile a SQL Statement to check DB for user info
+            // Pre-compile a SQL Statement to check DB for joke info
             ps = conn.prepareStatement("SELECT * FROM Jokes");
             rs = ps.executeQuery();
             return rs2jokelist(rs);
@@ -310,7 +311,7 @@ public class MariaDB {
             // Joke - varchar
             joke.setJoke(rs.getString(3));
             // Context - varchar
-            joke.setContext(rs.getString(4));
+            joke.setContext(rsGetStringHandleNull(rs, 4));
             // Funniness - int
             joke.setFunniness(rs.getInt(5));
             // Edginess - int
@@ -320,11 +321,29 @@ public class MariaDB {
             // TimeAdded - timestamp
             joke.setDateAdded(ts2zdt(rs.getTimestamp(8)));
             jokes.add(joke);
+            System.out.println(joke2string(joke));
+            System.out.println();
         }
         return jokes;
     }
     private static ZonedDateTime ts2zdt(Timestamp ts) {
         return ZonedDateTime.ofInstant(ts.toInstant(), ZoneId.of("EST"));
     }
+    private static String rsGetStringHandleNull(ResultSet rs, int col) throws SQLException {
+        if(rs.getString(col) == null) {
+            return "";
+        } else {
+            return rs.getString(col);
+        }
+    }
     
+    private static String joke2string(Joke joke) {
+        String str = "";
+        str += "The joke: " + joke.getJoke();
+        str += "The context: " + joke.getContext();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String zdt2str = dtf.format(joke.getDateAdded());
+        str += "The time: " +  zdt2str;
+        return str;
+    }
 } // MariaDB.java

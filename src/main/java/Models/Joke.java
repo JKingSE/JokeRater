@@ -25,6 +25,7 @@ public class Joke {
     private int overallRating;
     private int[] tags;
 
+    
     public int getId() {
         return id;
     }
@@ -32,79 +33,87 @@ public class Joke {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public void setJoke(String joke){
-        this.joke = joke;
-    }
-    public String getJoke(){
+
+    public String getJoke() {
         return joke;
     }
-    
-    public void setPoster(String poster){
-        this.poster = poster;
+
+    public void setJoke(String joke) {
+        this.joke = joke;
     }
-    public String getPoster(){
+
+    public String getPoster() {
         return poster;
     }
-    
-    public void setClassSection(String classSection){
-        this.classSection = classSection;
+
+    public void setPoster(String poster) {
+        this.poster = poster;
     }
-    public String getClassSection(){
+
+    public String getClassSection() {
         return classSection;
     }
-    
-    public void setStringAdded(ZonedDateTime dateAdded){
-        this.dateAdded = dateAdded;
+
+    public void setClassSection(String classSection) {
+        this.classSection = classSection;
     }
-    public ZonedDateTime getDateAdded(){
+
+    public ZonedDateTime getDateAdded() {
         return dateAdded;
     }
+
     public void setDateAdded(ZonedDateTime dateAdded) {
         this.dateAdded = dateAdded;
     }
-    public void setProfessor(int professor){
-        this.professor = professor;
-    }
-    public int getProfessor(){
+
+    public int getProfessor() {
         return professor;
     }
-    
-    public void setFlagged(boolean flagged){
-        this.flagged = flagged;
+
+    public void setProfessor(int professor) {
+        this.professor = professor;
     }
-    public boolean isFlagged(){
+
+    public boolean isFlagged() {
         return flagged;
     }
-    
-    public void setContext(String context){
-        this.context = context;
+
+    public void setFlagged(boolean flagged) {
+        this.flagged = flagged;
     }
-    public String getContext(){
+
+    public String getContext() {
         return context;
     }
-    
-    public void setEdginess(int edginess){
-        this.edginess = edginess;
+
+    public void setContext(String context) {
+        this.context = context;
     }
-    public int getEdginess(){
+
+    public int getEdginess() {
         return edginess;
     }
-    
-    public void setFunniness(int funniness){
-        this.funniness = funniness;
+
+    public void setEdginess(int edginess) {
+        this.edginess = edginess;
     }
-    public int getFunniness(){
+
+    public int getFunniness() {
         return funniness;
     }
-    
-    public void setPunniness(int punniness){
-        this.punniness = punniness;
+
+    public void setFunniness(int funniness) {
+        this.funniness = funniness;
     }
-    public int getPunniness(){
+
+    public int getPunniness() {
         return punniness;
     }
-    
+
+    public void setPunniness(int punniness) {
+        this.punniness = punniness;
+    }
+
     public void setOverallRating(){
         this.overallRating = Math.round(funniness+punniness+edginess)/3;
     }
@@ -125,6 +134,22 @@ public class Joke {
         this.funniness = -1;
         this.punniness = -1;
         this.overallRating = -1;
+        this.tags = new int[0];
+    }
+    
+    public Joke(int i, String randomJoke, String randomPoster, String randomContext) {
+        this.id = i;
+        this.joke = randomJoke;
+        this.poster = randomPoster;
+        this.context = randomContext;
+        this.classSection = "1";
+        this.dateAdded = ZonedDateTime.now();
+        this.professor = 1;
+        this.flagged = false;
+        this.edginess = 5;
+        this.funniness = 5;
+        this.punniness = 5;
+        setOverallRating();
         this.tags = new int[0];
     }
     
