@@ -16,14 +16,19 @@
         <h:body>
 
             <p:layout fullPage="true">
+                
+                <p:layoutUnit position="north" size="120" resizable="false" closable="true" collapsible="true">
+                    <img src="Images/whiteJRLogo.png" height="100" width="300" style="margin:0px 0px; float:left;" onerror="this.src='../Images/whiteJRLogo.png';"/>
+                    <span style="color:black;font-variant:small-caps;font-size:x-large;float:right;"><br />SWEN-356 Scrum Project<br />&nbsp;&nbsp;&nbsp;&nbsp;Version: Alpha</span>
+                </p:layoutUnit> <!--Header-->
 
-                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    Header
-                </p:layoutUnit>
-
-                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                    Footer
-                </p:layoutUnit>
+                <p:layoutUnit position="south" size="65" closable="true" collapsible="true">
+                    <div align="center" style="color:black;font-variant:small-caps;font-size:large;">
+                       All rights reserved to Beltran Caliz, Colin Fausnaught, Michael Gilmour, John King, and Ian Taylor.
+                       <br />
+                       Special thanks to Professor Samuel Malachowsky.
+                    </div>
+                    </p:layoutUnit> <!--Footer-->
 
 <!--                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
                     <p:menu>
