@@ -1,50 +1,80 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"  
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <h:outputStylesheet library="css" name="table-style.css"  />
-    </h:head>
-    <h:body>
-        <h:form id="allJokesForm"> 
-            <p:dataTable id="allJokes" widgetVar="jokesTable" var="joke" value="#{tableBean.allJokes}"
-                         paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rows="10"  rowsPerPageTemplate="3,5,10"
-                         rowKey="#{joke.id}" selectionMode="single" selection="#{tableBean.selection}"
-                         lazy="false" emptyMessage="No jokes found"
-                         filteredValue="#{tableBean.filtered}" style="min-width:990px"
-            >
-                <f:event listener="#{tableBean.update('All')}" type="preRenderComponent" />
-                <p:ajax event="rowSelect" listener="#{tableBean.rowSelect}" update=":allJokesForm:jokeDetail" oncomplete="PF('selectDlg').show()" />
-               
-                <p:column filterBy="#{joke.id}" headerText="Id" filterMatchMode="contains" filterStyle="width:30px;" width="40">
-                    <h:outputText value="#{joke.id}"/>
-                </p:column>
-                            
-                <p:column filterBy="#{joke.joke}" headerText="Software" filterMatchMode="contains" width="900">
-                    <h:outputText value="#{joke.joke}"/>
-                </p:column>
-             
-            </p:dataTable>
-            <p:dialog header="Joke Details" widgetVar="selectDlg" modal="false" showEffect="fade" hideEffect="fade" resizable="false" width="80%" maximizable="true" fitViewport="true" draggable="false">
-                <div style="text-align:center; margin-bottom:20px;">
-                    <p:button value="Rate Joke" outcome="/faces/rate.xhtml"/>
-                </div> <!--Ticket Actions-->
-                <p:outputPanel id="jokeDetail" style="text-align:center;">
-                    <p:panelGrid columns="2" rendered="#{not empty tableBean.selection}" columnClasses="label, value" style="display:inline-block;">
-                        <h:outputText value="ID:" />
-                        <h:outputText value="#{tableBean.selection.id}">
-                            <f:convertNumber type="number" />
-                        </h:outputText>
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
-                        <h:outputText value="Joke:"/>
-                        <h:outputText value="#{tableBean.selection.joke}"/>
-                    </p:panelGrid>
-                </p:outputPanel>
-            </p:dialog> <!--Expanded Joke Information Dialog-->      
-        </h:form>
-        <p:button value="Home" outcome="/faces/home.xhtml"/>
-    </h:body>
-</html>
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Table</title>
+            </f:facet>
+        </h:head> <!--Head-->
+        
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit position="center">
+                        
+                        <p:dataTable var="joke" value="#{tableBean.jokes}">
+                            <p:column headerText="Id">
+                                <h:outputText value="#{joke.id}" />
+                            </p:column>
+
+                            <p:column headerText="Joke">
+                                <h:outputText value="#{joke.joke}" />
+                            </p:column>
+
+                            <p:column headerText="Author">
+                                <h:outputText value="#{joke.poster}" />
+                            </p:column>
+
+                            <p:column headerText="Context">
+                                <h:outputText value="#{joke.context}" />
+                            </p:column>
+                        </p:dataTable>
+                    
+<!--                    <h:form id="allJokesForm"> 
+                        <p:button value="Refresh table" onclick="#{tableBean.dummyvalues}" />
+                        <p:dataTable id="allJokes" widgetVar="jokesTable" var="joke" value="#{tableBean.allJokes}"
+                                     paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rows="10"  rowsPerPageTemplate="3,5,10"
+                                     rowKey="#{joke.id}" selectionMode="single" selection="#{tableBean.selection}"
+                                     lazy="false" emptyMessage="No jokes found."
+                                     filteredValue="#{tableBean.filtered}" style="min-width:990px"
+                        >
+                            <f:event listener="#{tableBean.update('All')}" type="preRenderComponent" />
+                            <p:ajax event="rowSelect" listener="#{tableBean.rowSelect}" update=":allJokesForm:jokeDetail" oncomplete="PF('selectDlg').show()" />
+
+                            <p:column filterBy="#{joke.id}" headerText="Id" filterMatchMode="contains" filterStyle="width:30px;" width="40">
+                                <h:outputText value="#{joke.id}"/>
+                            </p:column>
+
+                            <p:column filterBy="#{joke.joke}" headerText="Software" filterMatchMode="contains" width="900">
+                                <h:outputText value="#{joke.joke}"/>
+                            </p:column>
+                        </p:dataTable>  jokesTable 
+                        <p:dialog header="Joke Details" widgetVar="selectDlg" modal="false" showEffect="fade" hideEffect="fade" resizable="false" width="80%" maximizable="true" fitViewport="true" draggable="false">
+                            <div style="text-align:center; margin-bottom:20px;">
+                                <p:button value="Rate Joke" outcome="/faces/rate.xhtml"/>
+                            </div> Joke Actions
+                            <p:outputPanel id="jokeDetail" style="text-align:center;">
+                                <p:panelGrid columns="2" rendered="#{not empty tableBean.selection}" columnClasses="label, value" style="display:inline-block;">
+                                    <h:outputText value="ID:" />
+                                    <h:outputText value="#{tableBean.selection.id}">
+                                        <f:convertNumber type="number" />
+                                    </h:outputText>
+
+                                    <h:outputText value="Joke:"/>
+                                    <h:outputText value="#{tableBean.selection.joke}"/>
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog> Expanded Joke Information Dialog      
+                    </h:form>  allJokesForm -->
+                    <p:button value="Home" outcome="/faces/home.xhtml"/>
+                </p:layoutUnit> <!-- center LU -->
+            </p:layout> <!-- layout -->
+        </h:body> <!-- body -->
+    </f:view> <!-- view -->
+</html> <!-- table.xhtml -->
