@@ -137,7 +137,7 @@ public class Joke {
         this.tags = new int[0];
     }
     
-    public Joke(int i, String randomJoke, String randomPoster, String randomContext) {
+    public Joke(int i, String randomJoke, String randomPoster, String randomContext, int overallRating, int funniness, int edginess, int punniness) {
         this.id = i;
         this.joke = randomJoke;
         this.poster = randomPoster;
