@@ -15,14 +15,24 @@
         
         <h:body>
             <p:layout fullPage="true">
+                
+                <p:layoutUnit position="north" size="120" resizable="false" closable="true" collapsible="true">
+                    <img src="../Images/whiteJRLogo.png" height="100" width="300" style="margin:0px 0px; float:left;" onerror="this.src='../Images/whiteJRLogo.jpg';"/>
+                    <span style="color:black;font-variant:small-caps;font-size:x-large;float:right;"><br />SWEN-356 Scrum Project<br />&nbsp;&nbsp;&nbsp;&nbsp;Version: Alpha</span>
+                </p:layoutUnit> <!--Header-->
+
+                <p:layoutUnit position="south" size="65" closable="true" collapsible="true">
+                    <div align="center" style="color:black;font-variant:small-caps;font-size:large;">
+                       All rights reserved to Beltran Caliz, Colin Fausnaught, Michael Gilmour, John King, and Ian Taylor.
+                       <br />
+                       Special thanks to Professor Samuel Malachowsky.
+                    </div>
+                </p:layoutUnit> <!--Footer-->
+                
                 <p:layoutUnit position="center">
                         <p:dataTable var="joke" value="#{tableBean.jokes}">
-                            <p:column headerText="Id">
-                                <h:outputText value="#{joke.id}" />
-                            </p:column>
-
                             <p:column headerText="Joke">
-                                <h:outputText value="#{joke.joke}" />
+                                <h:link value="#{joke.joke}" outcome="rate.xhtml" display="inline-block"/>
                             </p:column>
 
                             <p:column headerText="Author">
@@ -31,6 +41,26 @@
 
                             <p:column headerText="Context">
                                 <h:outputText value="#{joke.context}" />
+                            </p:column>
+                            
+                            <p:column headerText="Overall" width="70">
+                                <h:outputText value="#{joke.overallRating}" />
+                            </p:column>
+                            
+                            <p:column headerText="Funniness" width="85">
+                                <h:outputText value="#{joke.funniness}" />
+                            </p:column>
+                            
+                            <p:column headerText="Punniness" width="85">
+                                <h:outputText value="#{joke.punniness}" />
+                            </p:column>
+                            
+                            <p:column headerText="Edginess" width="75">
+                                <h:outputText value="#{joke.edginess}" />
+                            </p:column>
+                            
+                            <p:column headerText="Flagged" width="70">
+                                <h:selectBooleanCheckbox value="#{joke.flagged}" />
                             </p:column>
                         </p:dataTable>
                     <p:button value="Home" outcome="/faces/home.xhtml"/>

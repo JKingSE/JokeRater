@@ -146,9 +146,9 @@ public class Joke {
         this.dateAdded = ZonedDateTime.now();
         this.professor = 1;
         this.flagged = false;
-        this.edginess = 5;
-        this.funniness = 5;
-        this.punniness = 5;
+        this.edginess = edginess;
+        this.funniness = funniness;
+        this.punniness = punniness;
         this.overallRating = 15;
         this.tags = new int[0];
     }
