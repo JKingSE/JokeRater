@@ -59,11 +59,11 @@ public class JokeBean {
         return joke.isFlagged();
     }
     
-    public void setRatings(int funniness, int punniness, int edginess){
+    public void setRatings(int funniness, int edginess, int punniness){
         joke.setFunniness(funniness);
-        joke.setPunniness(punniness);
         joke.setEdginess(edginess);
-        joke.setOverallRating();
+        joke.setPunniness(punniness);
+        joke.setOverallRating(funniness+edginess+punniness);
         saveRatingsAttempt();
     }
     

@@ -12,17 +12,17 @@ import java.time.ZonedDateTime;
 public class Joke {
     
     private int id;
-    private String joke;
     private String poster;
+    private String joke;
     private String classSection;
-    private ZonedDateTime dateAdded;
     private int professor; //References the professor's id who made the joke
     private boolean flagged;
     private String context;
-    private int edginess;
     private int funniness;
+    private int edginess;
     private int punniness;
     private int overallRating;
+    private ZonedDateTime dateAdded;
     private int[] tags;
 
     
@@ -114,8 +114,8 @@ public class Joke {
         this.punniness = punniness;
     }
 
-    public void setOverallRating(){
-        this.overallRating = Math.round(funniness+punniness+edginess)/3;
+    public void setOverallRating(int overallRating){
+        this.overallRating = overallRating;
     }
     public int getOverallRating(){
         return overallRating;
@@ -149,7 +149,7 @@ public class Joke {
         this.edginess = 5;
         this.funniness = 5;
         this.punniness = 5;
-        setOverallRating();
+        this.overallRating = 15;
         this.tags = new int[0];
     }
     

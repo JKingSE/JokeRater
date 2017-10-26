@@ -304,30 +304,36 @@ public class MariaDB {
         List<Joke> jokes = new ArrayList();
         while(rs.next()) {
             Joke joke = new Joke();
-            // ID - int
+            // INT ID NOT NULL
+            // VARCHAR Poster
+            // VARCHAR Joke NOT NULL
+            // VARCHAR Class
+            // INT Professor
+            // BOOLEAN Flagged
+            // VARCHAR Context
+            // INT Funniness
+            // INT Edginess
+            // INT Punniness
+            // INT Overall
+            // TIMESTAMP TimeAdded
             joke.setId(rs.getInt(1));
-            // Poster - varchar
-            joke.setPoster(rs.getString(2));
-            // Joke - varchar
+            joke.setPoster(rsGetStringHandleNull(rs, 2));
             joke.setJoke(rs.getString(3));
-            // Context - varchar
-            joke.setContext(rsGetStringHandleNull(rs, 4));
-            // Funniness - int
-            joke.setFunniness(rs.getInt(5));
-            // Edginess - int
-            joke.setEdginess(rs.getInt(6));
-            // Punniness - int
-            joke.setPunniness(rs.getInt(7));
-            // TimeAdded - timestamp
-            joke.setDateAdded(ts2zdt(rs.getTimestamp(8)));
+            joke.setClassSection(rsGetStringHandleNull(rs, 4));
+            joke.setProfessor(rs.getInt(5));
+            joke.setFlagged(rs.getBoolean(6));
+            joke.setContext(rsGetStringHandleNull(rs,7));
+            joke.setFunniness(rs.getInt(8));
+            joke.setEdginess(rs.getInt(9));
+            joke.setPunniness(rs.getInt(10));
+            joke.setOverallRating(rs.getInt(11));
+            joke.setDateAdded(ts2zdt(rs.getTimestamp(12)));
             jokes.add(joke);
-            System.out.println(joke2string(joke));
-            System.out.println();
         }
         return jokes;
     }
     private static ZonedDateTime ts2zdt(Timestamp ts) {
-        return ZonedDateTime.ofInstant(ts.toInstant(), ZoneId.of("EST"));
+        return ZonedDateTime.ofInstant(ts.toInstant(), ZoneId.of("UTC"));
     }
     private static String rsGetStringHandleNull(ResultSet rs, int col) throws SQLException {
         if(rs.getString(col) == null) {

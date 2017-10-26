@@ -1,6 +1,7 @@
 package Beans;
 
 import Models.Joke;
+import Validators.TableValidator;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -15,7 +16,6 @@ import org.primefaces.event.SelectEvent;
 @SessionScoped
 public class TableBean implements Serializable{
     
-    private final String test = "test1";
     private List<Joke> jokes;
     
     @ManagedProperty(value = "#{jokeDatabase}")
@@ -23,11 +23,8 @@ public class TableBean implements Serializable{
     
     @PostConstruct
     public void init() {
-        jokes = jokeDatabase.createJokes(10);
-    }
-    
-    public String getTest() {
-        return this.test;
+//        jokes = jokeDatabase.createJokes(10);
+        jokes = TableValidator.selectJokes();
     }
     
     public List<Joke> getJokes() {
