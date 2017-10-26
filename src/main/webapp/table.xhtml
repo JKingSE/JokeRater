@@ -30,6 +30,69 @@
                 </p:layoutUnit> <!--Footer-->
                 
                 <p:layoutUnit position="center">
+                    <h:form id="jokesForm">
+                        <p:dataTable id="allJokes" widgetVar="jokesTable" var="joke" value="#{tableBean.jokes}"
+                                     rows="10"
+                                     rowKey="#{joke.id}" selectionMode="single" selection="#{tableBean.selection}"
+                                     emptyMessage="No jokes found with that criteria."
+                                     >
+                        
+                            <p:ajax event="rowSelect" listener="#{tableBean.rowSelect}" update=":allJokesForm:jokeDetail" oncomplete="PF('selectDlg').show()" />
+                            
+                            <p:column headerText="Id">
+                                <h:outputText value="#{joke.id}" />
+                            </p:column>
+                            
+                            <p:column headerText="Joke">
+                                <h:outputText value="#{joke.joke}" style="display:inline-block"/>
+                            </p:column>
+
+                            <p:column headerText="Author">
+                                <h:outputText value="#{joke.poster}" />
+                            </p:column>
+
+                            <p:column headerText="Context">
+                                <h:outputText value="#{joke.context}" />
+                            </p:column>
+                            
+                            <p:column headerText="Overall" width="70">
+                                <h:outputText value="#{joke.overallRating}" />
+                            </p:column>
+                            
+                            <p:column headerText="Funniness" width="85">
+                                <h:outputText value="#{joke.funniness}" />
+                            </p:column>
+                            
+                            <p:column headerText="Punniness" width="85">
+                                <h:outputText value="#{joke.punniness}" />
+                            </p:column>
+                            
+                            <p:column headerText="Edginess" width="75">
+                                <h:outputText value="#{joke.edginess}" />
+                            </p:column>
+                            
+                            <p:column headerText="Flagged" width="70">
+                                <h:selectBooleanCheckbox value="#{joke.flagged}" />
+                            </p:column>
+                            
+                        </p:dataTable>
+                        <p:dialog header="Joke Details" widgetVar="selectDlg" modal="false" showEffect="fade" hideEffect="fade" resizable="false" width="80%" maximizable="true" fitViewport="true" draggable="false">
+                            <div style="text-align:center; margin-bottom:20px;">
+                                <p:button value="Rate Joke" outcome="/faces/rate.xhtml"/>
+                            </div>
+                            <p:outputPanel id="jokeDetail" style="text-align:center;">
+                                <p:panelGrid columns="2" rendered="#{not empty tableBean.selection}" columnClasses="label, value" style="display:inline-block;">
+                                    <h:outputText value="ID:" />
+                                    <h:outputText value="#{tableBean.selection.id}">
+                                        <f:convertNumber type="number" />
+                                    </h:outputText>
+
+                                    <h:outputText value="Joke:"/>
+                                    <h:outputText value="#{tableBean.selection.joke}"/>
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>
+                    </h:form>
                         <p:dataTable var="joke" value="#{tableBean.jokes}">
                             <p:column headerText="Joke">
                                 <h:link value="#{joke.joke}" outcome="rate.xhtml" style="display:inline-block"/>
