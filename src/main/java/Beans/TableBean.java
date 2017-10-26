@@ -1,4 +1,5 @@
-package beans;
+package Beans;
+
 import Models.Joke;
 import java.io.Serializable;
 import java.util.List;
@@ -6,17 +7,18 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.SelectEvent;
  
 @ManagedBean(name = "tableBean")
-@ViewScoped
+@SessionScoped
 public class TableBean implements Serializable{
     
+    private final String test = "test1";
     private List<Joke> jokes;
     
-    @ManagedProperty(value="#{jokeDatabase}")
+    @ManagedProperty(value = "#{jokeDatabase}")
     private JokeDatabase jokeDatabase;
     
     @PostConstruct
@@ -24,13 +26,27 @@ public class TableBean implements Serializable{
         jokes = jokeDatabase.createJokes(10);
     }
     
-    public List<Joke> getJokes() {
-        return jokes;
+    public String getTest() {
+        return this.test;
     }
     
-    public void setJokedb(JokeDatabase jokeDatabase) {
+    public List<Joke> getJokes() {
+        return this.jokes;
+    }
+    
+    public void setJokes(List<Joke> jokes) {
+        this.jokes = jokes;
+    }
+
+    public JokeDatabase getJokeDatabase() {
+        return jokeDatabase;
+    }
+
+    public void setJokeDatabase(JokeDatabase jokeDatabase) {
         this.jokeDatabase = jokeDatabase;
     }
+    
+    
     
 //    private List<Joke> allJokes;
 //    private Joke selection;

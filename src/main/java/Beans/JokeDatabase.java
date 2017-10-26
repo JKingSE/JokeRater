@@ -4,8 +4,8 @@ import Models.Joke;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
@@ -13,7 +13,7 @@ import javax.faces.bean.ManagedBean;
  */
 
 @ManagedBean (name = "jokeDatabase")
-@ApplicationScoped
+@SessionScoped
 public class JokeDatabase {
     
     private final static String[] jokes;
