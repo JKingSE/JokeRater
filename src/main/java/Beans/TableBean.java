@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
  
 @ManagedBean(name = "tableBean")
 @SessionScoped
@@ -73,6 +74,12 @@ public class TableBean implements Serializable{
     public void rowSelect(SelectEvent event) {
         int id = ((Joke) event.getObject()).getId();
         FacesMessage msg = new FacesMessage("Joke Selected", Integer.toString(id));
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+    public void rowUnselect(UnselectEvent event) {
+        int id = ((Joke) event.getObject()).getId();
+        FacesMessage msg = new FacesMessage("Joke Unselected", Integer.toString(id));
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     

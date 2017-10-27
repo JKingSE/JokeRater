@@ -22,6 +22,8 @@ public class JokeBean {
     private Joke joke = new Joke();
     @ManagedProperty(value="#{userBean}")
     private UserBean userBean;
+    @ManagedProperty(value="#{tableBean}")
+    private TableBean tableBean;
 
     public Joke getJoke() {
         return joke;
@@ -38,8 +40,14 @@ public class JokeBean {
     public void setUserBean(UserBean userBean) {
         this.userBean = userBean;
     }
-    
-   
+
+    public TableBean getTableBean() {
+        return tableBean;
+    }
+
+    public void setTableBean(TableBean tableBean) {
+        this.tableBean = tableBean;
+    }
     
     public String submitJokeAttempt() {
         if(JokeValidator.submitJoke(joke.getJoke(), userBean.getUser().getUsername(), joke.getContext())) {
@@ -67,7 +75,13 @@ public class JokeBean {
         saveRatingsAttempt();
     }
     
-    public void saveRatingsAttempt(){
-        JokeValidator.saveRatings(joke.getId(), joke.getFunniness(), joke.getPunniness(), joke.getEdginess());
+    public String saveRatingsAttempt(){
+        Joke selection = tableBean.getSelection();
+        boolean success = JokeValidator.saveRatings(selection.getId(), selection.getFunniness(), selection.getPunniness(), selection.getEdginess());
+        if(success) {
+            selection.setOverallRating((selection.getFunniness() + selection.getEdginess() + selection.getPunniness()) / 3);
+            return "table.xhtml";
+        }
+        else    return "rate.xhtml";
     }
 }

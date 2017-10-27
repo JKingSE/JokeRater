@@ -30,19 +30,6 @@
                     </div>
                     </p:layoutUnit> <!--Footer-->
 
-<!--                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
-                    <p:menu>
-                        <p:submenu label="Resources">
-                            <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
-                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
-                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
-                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
-
-                        </p:submenu>
-
-                    </p:menu>
-                </p:layoutUnit>-->
-
                 <p:layoutUnit position="center" style="padding-top:10%;">
                     <h:form id="submitRateForm">
                         <p:panel  header="Submit a rating" style="width:500px;margin:auto;padding:10px;border:3px solid black;display:block;">
@@ -50,24 +37,22 @@
                             <br />
                             <h:panelGrid id="submitRate" columns="2">
                                 <h:outputText value="Funniness:"/>
-                                <p:inputText style="margin-left:50px;" required="true" value="#{jokeBean.joke.funniness}"/>
+                                    <p:inputText style="margin-left:50px;" value="#{tableBean.selection.funniness}"/>
 
-                                <h:outputText value="Edginess:"/>
-                                <p:inputText style="margin-left:50px;" value="#{jokeBean.joke.edginess}"/>
-                                
-                                <h:outputText value="Punniness:"/>
-                                <p:inputText style="margin-left:50px;" value="#{jokeBean.joke.punniness}"/>
-                                
-                                <p:commandButton value="Submit" action="#{jokeBean.saveRatingsAttempt}" update="submitRateForm" ajax="false" icon="ui-icon-unlocked"/>
-                                <p:spacer/>
+                                    <h:outputText value="Edginess:"/>
+                                    <p:inputText style="margin-left:50px;" value="#{tableBean.selection.edginess}"/>
+
+                                    <h:outputText value="Punniness:"/>
+                                    <p:inputText style="margin-left:50px;" value="#{tableBean.selection.punniness}"/>
+                                    
+                                    <f:facet name="footer">
+                                        <p:commandButton value="Submit" action="#{jokeBean.saveRatingsAttempt}" update="submitRateForm" ajax="false" icon="ui-icon-unlocked"/>
+                                    </f:facet>
                             </h:panelGrid>
                         </p:panel>
                     </h:form>
                 </p:layoutUnit> <!--Center-->
-
             </p:layout>
-
         </h:body>
-
     </f:view>
 </html>

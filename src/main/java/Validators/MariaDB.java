@@ -245,13 +245,14 @@ public class MariaDB {
         PreparedStatement ps = null;
         try {
             conn = connect();
-            String query = "UPDATE Jokes SET Funniness = ?, Punniness = ?, Edginess = ? WHERE ID = ?)";
+            String query = "UPDATE Jokes SET Funniness = ?, Edginess = ?, Punniness = ?, Overall = ? WHERE ID = ?";
             // ps throws SQL exception if database access error occurs
             ps = conn.prepareStatement(query);
             ps.setInt(1, Funniness);
-            ps.setInt(2, Punniness);
-            ps.setInt(3, Edginess);
-            ps.setInt(4, id);
+            ps.setInt(2, Edginess);
+            ps.setInt(3, Punniness);
+            ps.setInt(4, (Funniness + Punniness + Edginess)/3);
+            ps.setInt(5, id);
             return ps.executeUpdate() > 0;
         }   // end of try
         catch (SQLException ex) {

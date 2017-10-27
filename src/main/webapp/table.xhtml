@@ -37,7 +37,8 @@
                                      emptyMessage="No jokes found with that criteria."
                                      >
                         
-                            <p:ajax event="rowSelect" listener="#{tableBean.rowSelect}" update=":allJokesForm:jokeDetail" oncomplete="PF('selectDlg').show()" />
+                            <p:ajax event="rowSelect" listener="#{tableBean.rowSelect}" update=":jokesForm:jokeDetail" oncomplete="PF('selectDlg').show()" />
+                            <p:ajax event="rowUnselect" listener="#{tableBean.rowUnselect}" update=":jokesForm:jokeDetail" />
                             
                             <p:column headerText="Id">
                                 <h:outputText value="#{joke.id}" />
@@ -71,8 +72,9 @@
                                 <h:outputText value="#{joke.edginess}" />
                             </p:column>
                             
+                            
                             <p:column headerText="Flagged" width="70">
-                                <h:selectBooleanCheckbox value="#{joke.flagged}" />
+                                <h:selectBooleanCheckbox value="#{joke.flagged}" disabled="true" />
                             </p:column>
                             
                         </p:dataTable>
@@ -92,41 +94,8 @@
                                 </p:panelGrid>
                             </p:outputPanel>
                         </p:dialog>
+                        <p:button value="Home" outcome="/faces/home.xhtml"/>
                     </h:form>
-                        <p:dataTable var="joke" value="#{tableBean.jokes}">
-                            <p:column headerText="Joke">
-                                <h:link value="#{joke.joke}" outcome="rate.xhtml" style="display:inline-block"/>
-                            </p:column>
-
-                            <p:column headerText="Author">
-                                <h:outputText value="#{joke.poster}" />
-                            </p:column>
-
-                            <p:column headerText="Context">
-                                <h:outputText value="#{joke.context}" />
-                            </p:column>
-                            
-                            <p:column headerText="Overall" width="70">
-                                <h:outputText value="#{joke.overallRating}" />
-                            </p:column>
-                            
-                            <p:column headerText="Funniness" width="85">
-                                <h:outputText value="#{joke.funniness}" />
-                            </p:column>
-                            
-                            <p:column headerText="Punniness" width="85">
-                                <h:outputText value="#{joke.punniness}" />
-                            </p:column>
-                            
-                            <p:column headerText="Edginess" width="75">
-                                <h:outputText value="#{joke.edginess}" />
-                            </p:column>
-                            
-                            <p:column headerText="Flagged" width="70">
-                                <h:selectBooleanCheckbox value="#{joke.flagged}" />
-                            </p:column>
-                        </p:dataTable>
-                    <p:button value="Home" outcome="/faces/home.xhtml"/>
                 </p:layoutUnit> <!-- center LU -->
             </p:layout> <!-- layout -->
         </h:body> <!-- body -->
