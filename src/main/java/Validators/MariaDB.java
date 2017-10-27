@@ -265,6 +265,28 @@ public class MariaDB {
         }   // end of finally
     }
     
+    public static boolean saveFlaggedQuery(int id, boolean Flagged) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = connect();
+            String query = "UPDATE Jokes SET Flagged = ? WHERE ID = ?";
+            // ps throws SQL exception if database access error occurs
+            ps = conn.prepareStatement(query);
+            ps.setBoolean(1, Flagged);
+            ps.setInt(2, id);
+            return ps.executeUpdate() > 0;
+        }   // end of try
+        catch (SQLException ex) {
+            Logger.getLogger(MariaDB.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }   // end of catch
+        finally {
+            closeResource(ps);
+            closeResource(conn);
+        }   // end of finally
+    }
+    
     //***Close Resources***//
     /**
      * Release the database resource

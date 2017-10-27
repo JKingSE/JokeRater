@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Submit Joke</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="120" resizable="false" closable="true" collapsible="true">
+                    <img src="Images/whiteJRLogo.png" height="100" width="300" style="margin:0px 0px; float:left;" onerror="this.src='../Images/whiteJRLogo.png';"/>
+                    <span style="color:black;font-variant:small-caps;font-size:x-large;float:right;"><br />SWEN-356 Scrum Project<br />&nbsp;&nbsp;&nbsp;&nbsp;Version: Alpha</span>
+                </p:layoutUnit> <!--Header-->
+
+                <p:layoutUnit position="south" size="65" closable="true" collapsible="true">
+                    <div align="center" style="color:black;font-variant:small-caps;font-size:large;">
+                       All rights reserved to Beltran Caliz, Colin Fausnaught, Michael Gilmour, John King, and Ian Taylor.
+                       <br />
+                       Special thanks to Professor Samuel Malachowsky.
+                    </div>
+                    </p:layoutUnit> <!--Footer-->
+
+                <p:layoutUnit position="center" style="padding-top:10%;">
+                    <h:form id="submitFlagForm">
+                        <p:panel header="Change flagged status" style="width:500px;margin:auto;padding:10px;border:3px solid black;display:block;">
+                            <h:outputText value="Click this button to change the flagged status of this joke"/>
+                            <br />
+                            <h:panelGrid id="submitFlagged" columns="2">
+                                    <f:facet name="footer">
+                                        <p:commandButton value="Flag" action="#{jokeBean.changeFlag}" update="submitFlagForm" ajax="false" icon="ui-icon-unlocked"/>
+                                    </f:facet>
+                            </h:panelGrid>
+                        </p:panel>
+                    </h:form>
+                </p:layoutUnit> <!--Center-->
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>

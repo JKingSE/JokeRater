@@ -84,4 +84,14 @@ public class JokeBean {
         }
         else    return "rate.xhtml";
     }
+    
+    public String changeFlag(){
+        Joke selection = tableBean.getSelection();
+        selection.setFlagged(!selection.isFlagged());
+        boolean success = JokeValidator.saveFlagged(selection.getId(), selection.isFlagged());
+        if(success){
+            return "table.xhtml";
+        }
+        else return "flagged.xhtml";
+    }
 }

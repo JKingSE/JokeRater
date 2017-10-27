@@ -81,6 +81,7 @@
                         <p:dialog header="Joke Details" widgetVar="selectDlg" modal="false" showEffect="fade" hideEffect="fade" resizable="false" width="80%" maximizable="true" fitViewport="true" draggable="false">
                             <div style="text-align:center; margin-bottom:20px;">
                                 <p:button value="Rate Joke" outcome="/faces/rate.xhtml"/>
+                                <p:button value="Flag Joke" outcome="/faces/flagged.xhtml"/>
                             </div>
                             <p:outputPanel id="jokeDetail" style="text-align:center;">
                                 <p:panelGrid columns="2" rendered="#{not empty tableBean.selection}" columnClasses="label, value" style="display:inline-block;">

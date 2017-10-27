@@ -14,4 +14,7 @@ public class JokeValidator {
         return MariaDB.saveRatingsQuery(id, Funniness, Punniness, Edginess);
     }
     
+    public static boolean saveFlagged(int id, boolean flagged) {
+        return MariaDB.saveFlaggedQuery(id, flagged);
+    }
 } // JokeValidator.java
