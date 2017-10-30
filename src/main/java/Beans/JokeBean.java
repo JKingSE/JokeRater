@@ -77,9 +77,11 @@ public class JokeBean {
     
     public String saveRatingsAttempt(){
         Joke selection = tableBean.getSelection();
-        boolean success = JokeValidator.saveRatings(selection.getId(), selection.getFunniness(), selection.getPunniness(), selection.getEdginess());
+        boolean success = JokeValidator.saveRatings(selection.getId(), 
+                selection.getFunniness(), selection.getPunniness(), selection.getEdginess());
         if(success) {
-            selection.setOverallRating((selection.getFunniness() + selection.getEdginess() + selection.getPunniness()) / 3);
+            selection.setOverallRating((selection.getFunniness() + 
+                    selection.getEdginess() + selection.getPunniness()) / 3);
             return "table.xhtml";
         }
         else    return "rate.xhtml";
