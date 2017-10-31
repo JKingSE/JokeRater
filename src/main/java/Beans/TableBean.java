@@ -27,6 +27,7 @@ public class TableBean implements Serializable{
     public void init() {
 //        jokes = jokeDatabase.createJokes(10);
         jokes = TableValidator.selectJokes();
+        
     }
     
     public List<Joke> getJokes() {
