@@ -25,7 +25,6 @@ INSERT INTO Jokes (Poster, Joke, Class, Professor, Flagged, Context, Funniness, 
 INSERT INTO Jokes (Poster, Joke, Class, Professor, Flagged, Context, Funniness, Edginess, Punniness, Overall) VALUES ("root","What screams Insecure? http.", "SWEN-250", 0, 0, "NONE", 5, 0, 0, 5);
 INSERT INTO Jokes (Poster, Joke, Class, Professor, Flagged, Context, Funniness, Edginess, Punniness, Overall) VALUES ("root","What's a pirate's favorite letter? R? No, the pirate's first love be the C", "SWEN-256", 1, 0, "NONE", 3, 3, 4, 3);
 INSERT INTO Jokes (Poster, Joke, Class, Professor, Flagged, Context, Funniness, Edginess, Punniness, Overall) VALUES ("root","How many naraccists does it take to screw in a lightbulb? One, then the world revolves around them", "SWEN-256", 1, 0, "Presenter staring at teacher", 3, 0, 0, 2);
-INSERT INTO Jokes (Poster, Joke, Class, Professor, Flagged, Context, Funniness, Edginess, Punniness, Overall) VALUES ("root","What's a pirate's favorite letter? R? No, the pirate's first love be the C", "SWEN-256", 1, 0, "NONE", 3, 3, 4, 3);
 INSERT INTO Jokes (Poster, Joke, Class, Professor, Flagged, Context, Funniness, Edginess, Punniness, Overall) VALUES ("root","The other day I ran into my ex. Then I put it in reverse and ran over her again", "SWEN-256", 0, 0, "Ex-Wife Jokes", 4, 5, 1, 4);
 
 

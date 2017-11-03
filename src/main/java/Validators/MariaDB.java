@@ -356,10 +356,6 @@ public class MariaDB {
             if(joke.isFlagged()) flaggedJokes.add(joke);
             else jokes.add(joke);
         }
-        for(Joke joke: flaggedJokes){
-            jokes.add(joke);
-            
-        }
         
         for(Joke joke: flaggedJokes) jokes.add(joke);
         
