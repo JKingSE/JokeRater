@@ -1,8 +1,11 @@
 package Beans;
 
 import Models.Joke;
+import Models.User;
 import Validators.TableValidator;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -22,11 +25,39 @@ public class TableBean implements Serializable{
     
     @ManagedProperty(value = "#{jokeDatabase}")
     private JokeDatabase jokeDatabase;
+    @ManagedProperty(value = "#{userBean}")
+    private UserBean userBean;
+    
+    
+    public void setUserBean(UserBean userbean) {
+            this.userBean = userbean;
+    }
     
     @PostConstruct
     public void init() {
 //        jokes = jokeDatabase.createJokes(10);
-        jokes = TableValidator.selectJokes();
+        List<Joke> allJokes = TableValidator.selectJokes();
+        List<Joke> favoritedJokes = new ArrayList();
+        List<Joke> flaggedJokes = new ArrayList();
+        List<Joke> regularJokes = new ArrayList();
+        
+        User user = userBean.getUser();
+        
+        List<String> favList = Arrays.asList(user.getFavorites().split(","));
+        List<Integer> favInts = new ArrayList();
+        
+        for(String fav: favList) favInts.add(Integer.parseInt(fav));
+        
+        for(Joke aJoke: allJokes){
+            if(aJoke.isFlagged()) flaggedJokes.add(aJoke);
+            else if(favList.contains(aJoke.getId())) favoritedJokes.add(aJoke);
+            else regularJokes.add(aJoke);
+        }
+        
+        jokes.addAll(favoritedJokes);
+        jokes.addAll(regularJokes);
+        jokes.addAll(flaggedJokes);
+        
         
     }
     
