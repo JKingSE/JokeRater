@@ -31,6 +31,7 @@
                 
                 <p:layoutUnit position="center">
                     <h:form id="jokesForm">
+                        <h:button value="Update Table" onclick="#{tableBean.update()}" outcome="/faces/table.xhtml" />     
                         <p:dataTable id="allJokes" widgetVar="jokesTable" var="joke" value="#{tableBean.jokes}"
                                      rows="10"
                                      rowKey="#{joke.id}" selectionMode="single" selection="#{tableBean.selection}"

@@ -61,6 +61,10 @@ public class TableBean implements Serializable{
         
     }
     
+    public void update() {
+        jokes = TableValidator.selectJokes();
+    }
+    
     public List<Joke> getJokes() {
         return this.jokes;
     }

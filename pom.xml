@@ -21,6 +21,16 @@
             <version>2.2.7</version>
         </dependency>
         <dependency>
+		<groupId>org.primefaces.themes</groupId>
+		<artifactId>afterdark</artifactId>
+		<version>1.0.6</version>
+	</dependency>
+        <dependency>
+		<groupId>org.primefaces.themes</groupId>
+		<artifactId>pepper-grinder</artifactId>
+		<version>1.0.6</version>
+	</dependency>
+        <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
             <version>2.0.1</version>
