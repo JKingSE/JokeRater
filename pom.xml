@@ -27,7 +27,17 @@
 	</dependency>
         <dependency>
 		<groupId>org.primefaces.themes</groupId>
+		<artifactId>cupertino</artifactId>
+		<version>1.0.6</version>
+	</dependency>
+        <dependency>
+		<groupId>org.primefaces.themes</groupId>
 		<artifactId>pepper-grinder</artifactId>
+		<version>1.0.6</version>
+	</dependency>
+        <dependency>
+		<groupId>org.primefaces.themes</groupId>
+		<artifactId>blitzer</artifactId>
 		<version>1.0.6</version>
 	</dependency>
         <dependency>
