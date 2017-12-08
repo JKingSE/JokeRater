@@ -41,19 +41,19 @@
                             <p:ajax event="rowSelect" listener="#{tableBean.rowSelect}" update=":jokesForm:jokeDetail" oncomplete="PF('selectDlg').show()" />
                             <p:ajax event="rowUnselect" listener="#{tableBean.rowUnselect}" update=":jokesForm:jokeDetail" />
                             
-                            <p:column headerText="Id">
+                            <p:column headerText="Id" sortBy="#{joke.id}">
                                 <h:outputText value="#{joke.id}" />
                             </p:column>
                             
-                            <p:column headerText="Joke">
+                            <p:column headerText="Joke" sortBy="#{joke.joke}">
                                 <h:outputText value="#{joke.joke}" style="display:inline-block"/>
                             </p:column>
 
-                            <p:column headerText="Author">
+                            <p:column headerText="Author" sortBy="#{joke.poster}">
                                 <h:outputText value="#{joke.poster}" />
                             </p:column>
 
-                            <p:column headerText="Context">
+                            <p:column headerText="Context" sortBy="#{joke.context}">
                                 <h:outputText value="#{joke.context}" />
                             </p:column>
                             
@@ -61,15 +61,15 @@
                                 <h:outputText value="#{joke.overallRating}" />
                             </p:column>
                             
-                            <p:column headerText="Funniness" width="85">
+                            <p:column headerText="Funniness" width="85" sortBy="#{joke.funniness}">
                                 <h:outputText value="#{joke.funniness}" />
                             </p:column>
                             
-                            <p:column headerText="Punniness" width="85">
+                            <p:column headerText="Punniness" width="85" sortBy="#{joke.punniness}">
                                 <h:outputText value="#{joke.punniness}" />
                             </p:column>
                             
-                            <p:column headerText="Edginess" width="75">
+                            <p:column headerText="Edginess" width="75" sortBy="#{joke.edginess}">
                                 <h:outputText value="#{joke.edginess}" />
                             </p:column>
                             
