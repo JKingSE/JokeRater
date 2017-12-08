@@ -325,7 +325,7 @@ public class MariaDB {
     //***Conversion Methods***//
     private static List<Joke> rs2jokelist(ResultSet rs) throws SQLException {
         List<Joke> jokes = new ArrayList();
-        
+        List<Joke> flaggedJokes = new ArrayList<>();
         while(rs.next()) {
             Joke joke = new Joke();
             // INT ID NOT NULL
@@ -353,8 +353,15 @@ public class MariaDB {
             joke.setOverallRating(rs.getInt(11));
             joke.setDateAdded(ts2zdt(rs.getTimestamp(12)));
             
-            jokes.add(joke);
+            if(joke.isFlagged()) flaggedJokes.add(joke);
+            else jokes.add(joke);
         }
+        for(Joke joke: flaggedJokes){
+            jokes.add(joke);
+            
+        }
+        
+        for(Joke joke: flaggedJokes) jokes.add(joke);
         
         return jokes;
     }
